@@ -1,0 +1,66 @@
+{
+  "_about": "What brief.py reads. 'queries' become Google News RSS searches; 'feeds' are read as-is. Every item must match 'topic' and must not match 'exclude'. Buckets are checked in order on the title, then on the summary; an item lands in the first that matches, else the last bucket.",
+  "days": 7,
+  "topic": "\\bagent(s|ic)?\\b|\\bAI shopping\\b|Intelligent Commerce|Agent Pay|Trusted Agent Protocol|agent-to-agent|\\bACP\\b|\\bAP2\\b",
+  "queries": [
+    "\"agentic commerce\"",
+    "\"agentic commerce\" Visa",
+    "\"Visa Intelligent Commerce\"",
+    "\"Trusted Agent Protocol\"",
+    "\"Mastercard Agent Pay\"",
+    "\"agentic commerce\" fraud OR chargeback OR dispute",
+    "\"AI agent\" checkout payments",
+    "\"Agentic Commerce Protocol\" OR \"Agent Payments Protocol\""
+  ],
+  "feeds": [
+    {
+      "name": "Payments Dive",
+      "url": "https://www.paymentsdive.com/feeds/news/"
+    },
+    {
+      "name": "PYMNTS",
+      "url": "https://www.pymnts.com/feed/"
+    },
+    {
+      "name": "Cloudflare blog",
+      "url": "https://blog.cloudflare.com/rss/"
+    },
+    {
+      "name": "Stripe blog",
+      "url": "https://stripe.com/blog/feed.rss"
+    }
+  ],
+  "buckets": [
+    {
+      "name": "Fraud and disputes",
+      "why": "What the shopper's issuing bank and the merchant are losing money on, and who is blamed.",
+      "pattern": "fraud|chargeback|dispute|scam|liabilit|who pays|unauthori[sz]ed|bot traffic|bad bot|account takeover|refund abuse|financial crime|money laundering|\\bAML\\b|\\bKYA\\b|know your agent|authenticat|\\brisk"
+    },
+    {
+      "name": "Visa's own moves",
+      "why": "What Visa shipped or said.",
+      "pattern": "\\bVisa\\b"
+    },
+    {
+      "name": "Competitor moves",
+      "why": "Mastercard, Amex and the wallets and processors that sit between Visa and the agent.",
+      "pattern": "Mastercard|American Express|\\bAmex\\b|PayPal|Stripe|Adyen|Klarna|Affirm|Block\\b|Square\\b|Coinbase|Google Pay|Apple Pay|AP2|Agent Payments Protocol"
+    },
+    {
+      "name": "New agent partners and merchants",
+      "why": "Who is shipping agents that buy, and which merchants let them in.",
+      "pattern": "OpenAI|ChatGPT|Anthropic|Claude|Perplexity|Gemini|Copilot|Microsoft|Amazon|Shopify|Walmart|Target|Instacart|Etsy|eBay|Salesforce|launch|partner|pilot|rolls? out"
+    },
+    {
+      "name": "Rules and standards",
+      "why": "Network rules, EMVCo, protocols and regulators that set who owns what.",
+      "pattern": "EMVCo|standard|protocol|CFPB|regulat|\\brule|compliance|Reg E|Reg Z|FIDO|passkey"
+    },
+    {
+      "name": "Everything else on agentic commerce",
+      "why": "On topic, no bucket above.",
+      "pattern": ""
+    }
+  ],
+  "exclude": "AWS Marketplace|now available for AI agents through"
+}
